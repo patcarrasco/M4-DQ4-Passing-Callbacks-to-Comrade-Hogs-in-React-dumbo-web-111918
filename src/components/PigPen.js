@@ -15,6 +15,7 @@ export default class PigPen extends React.Component {
   constructor() {
     super()
     this.state = {
+      panicked: false,
       environment: "docile"
     }
     this.audio = new Audio(exclaim)
@@ -34,16 +35,25 @@ export default class PigPen extends React.Component {
 
   generateSheeple = () => {
     return pigs.map((name, idx) => (
-      <Pig key={idx} id={name} name={name} environment={this.state.environment} />
+      <Pig key={idx} id={name} name={name} environment={this.state.environment} panicked={this.state.panicked} />
     ))
   }
+
+  panicked = (data) => {
+    console.log(data)
+    console.log('panickign piggles', this.state.panicked)
+    this.setState({
+      panicked: data
+    })
+  }
+
 
   render() {
     const sheeple = this.generateSheeple()
     return(
       <div id="pig-pen">
         {sheeple}
-        <GalaxySNote7 environment={null} alterEnvironment={null} />
+        <GalaxySNote7 environment={null} alterEnvironment={null} panicked={this.panicked}/>
       </div>
     )
   }

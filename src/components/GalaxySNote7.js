@@ -8,7 +8,7 @@ export default class GalaxySNote7 extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      panicked: false,
+      panicked: false
     }
 
     this.squeelAudio = new Audio(wreee);
@@ -19,9 +19,15 @@ export default class GalaxySNote7 extends React.Component {
   }
 
   throwAFit = () => {
+    this.setState({
+      panicked: true
+    })
   }
 
   relax = () => {
+    this.setState({
+      panicked: false
+    })
   }
 
   exclaim = () => {
@@ -30,11 +36,17 @@ export default class GalaxySNote7 extends React.Component {
     this.squeelAudio.play()
   }
 
+  clickHandler = () => {
+    // this.exclaim()
+    this.throwAFit()
+    setTimeout(this.props.panicked(!this.state.panicked), 2000)
+  }
+
   panic = () => (<img id="galaxy-exclamation" className="exclamation" src={exclamation} alt="" />)
 
   render() {
     return(
-      <div id="galaxy-s-note" onClick={this.exclaim}>
+      <div id="galaxy-s-note" onClick={this.clickHandler}>
         {(this.state.panicked) ? this.panic() : null}
       </div>
     )

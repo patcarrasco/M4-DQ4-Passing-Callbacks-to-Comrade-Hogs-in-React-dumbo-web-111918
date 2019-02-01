@@ -3,14 +3,13 @@ import exclamation from "../assets/exclamation.png"
 
 export default class Pig extends React.Component {
 
-
   panic = () => (<img className="exclamation" src={exclamation} alt="" />)
 
 
   render() {
     return(
       <div id={this.props.name} className="sheeple">
-        {null}
+        {(this.props.panicked) ? this.panic() : null}
       </div>
     )
   }
